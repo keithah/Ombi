@@ -6,6 +6,7 @@ on:
 
 jobs:
   issueCheck:
+    timeout-minutes: 8
     runs-on: ubuntu-latest
     steps:
 
