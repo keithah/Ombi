@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-ui:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-2
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -34,7 +34,7 @@ jobs:
             ./src/Ombi/ClientApp/dist
 
   unit-test:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-2
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-dotnet@v1
@@ -55,7 +55,7 @@ jobs:
           dotnet test -c NonUiBuild --logger trx --results-directory "TestResults"
 
   versioning:
-     runs-on: ubuntu-latest
+     runs-on: ubicloud-standard-2
      needs: [ build-ui, unit-test ]
      outputs:
       changelog: ${{ steps.changelog.outputs.clean_changelog }}
@@ -79,7 +79,7 @@ jobs:
            echo "log: ${{ steps.changelog.outputs.clean_changelog }}"
 
   publish:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-2
     needs: [ build-ui, versioning ]
     strategy:
       matrix:
@@ -164,7 +164,7 @@ jobs:
 
   release:
     needs: [ publish, unit-test, versioning ]
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-2
     steps:
       - uses: actions/checkout@v2
 
@@ -200,7 +200,7 @@ jobs:
 
   update-apt:
     needs: [ release, versioning ]
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-2
     steps:
     - name: Trigger APT Build
       uses: fjogeleit/http-request-action@master
