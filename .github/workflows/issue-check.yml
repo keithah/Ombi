@@ -6,7 +6,7 @@ on:
 
 jobs:
   issueCheck:
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-2
     steps:
 
       - if: startsWith(github.event.issue.body , '**Describe the bug**') == false

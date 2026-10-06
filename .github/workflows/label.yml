@@ -13,7 +13,7 @@ permissions: write-all
 jobs:
   label:
 
-    runs-on: ubuntu-latest
+    runs-on: ubicloud-standard-2
 
     steps:
     - uses: actions/labeler@v2
